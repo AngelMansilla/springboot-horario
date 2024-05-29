@@ -1,6 +1,7 @@
 package com.angel.curso.springboot.calendar.interceptor.springboot_horario.interceptors;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class CalendarInterceptor implements HandlerInterceptor {
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> data = new HashMap<>();
+        Map<String, String> data = new HashMap<>();
         StringBuilder message = new StringBuilder("Cerrado, fuera del horario de atencion");
         message.append("por favor visitenos desde las ");
         message.append(open);
@@ -54,6 +55,7 @@ public class CalendarInterceptor implements HandlerInterceptor {
         message.append(close);
         message.append(" hrs. Gracias!");
         data.put("message", message.toString());
+        data.put("date", new Date().toString());
 
         response.setContentType("application/json");
         response.setStatus(401);
